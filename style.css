@@ -1,0 +1,295 @@
+:root {
+    --primary-purple: #8A2BE2;
+    --deep-purple: #4B0082;
+    --soft-pink: #FFB6C1;
+    --hot-pink: #FF69B4;
+    --gold: #FFD700;
+    --light-gold: #FFF8DC;
+    --bg-gradient-start: #1a0033;
+    --bg-gradient-end: #4d004d;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-light: #FDFDFD;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+/* Floating Flowers Container */
+#flower-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.flower {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: floatDown 10s linear infinite;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.5));
+}
+
+@keyframes floatDown {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Glassmorphism Utilities */
+.glass-card, .glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-top: 5vh;
+    width: 100%;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.hero-content {
+    padding: 3rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.hero-content:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--soft-pink), var(--gold), var(--hot-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--light-gold);
+}
+
+/* Quotes Section */
+.quotes-section, .appreciation-section {
+    width: 100%;
+    max-width: 700px;
+}
+
+.quote-card {
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.quote-card::before, .quote-card::after {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+}
+.quote-card::before { top: 10px; left: 20px; }
+.quote-card::after { bottom: -20px; right: 20px; }
+
+.quote-text {
+    font-size: 1.4rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.quote-author {
+    font-weight: 600;
+    color: var(--gold);
+    font-size: 1.1rem;
+}
+
+/* Appreciation Section */
+.appreciation-content {
+    padding: 3rem;
+    text-align: center;
+}
+
+.appreciation-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--soft-pink);
+    margin-bottom: 1.5rem;
+}
+
+.appreciation-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* Reveal Button */
+.greeting-trigger {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.glow-btn {
+    background: linear-gradient(45deg, var(--primary-purple), var(--hot-pink));
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.3rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.glow-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    background: linear-gradient(45deg, var(--hot-pink), var(--gold));
+}
+
+/* Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    width: 90%;
+    max-width: 600px;
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    transform: scale(0.8) translateY(50px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+    border: 1px solid rgba(255,215,0,0.3);
+    box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
+}
+
+.popup-overlay.active .popup-content {
+    transform: scale(1) translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--hot-pink);
+}
+
+.gold-text {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.message-body {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.message-body p {
+    margin-bottom: 1rem;
+}
+
+.message-signature {
+    text-align: right;
+    font-size: 1.2rem;
+    color: var(--soft-pink);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .appreciation-content { padding: 2rem; }
+    .quote-card { padding: 2rem 1.5rem; }
+    .gold-text { font-size: 1.8rem; }
+    .message-body { font-size: 1rem; }
+}
